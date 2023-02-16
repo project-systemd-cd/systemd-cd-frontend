@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@aspida/fetch': ^1.11.0
   '@commitlint/cli': ^17.4.3
   '@commitlint/config-conventional': ^17.4.3
   '@next/font': 13.1.6
@@ -8,6 +9,7 @@ specifiers:
   '@types/node': 18.13.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  aspida: ^1.11.0
   autoprefixer: ^10.4.13
   daisyui: ^2.50.1
   eslint: 8.34.0
@@ -19,6 +21,9 @@ specifiers:
   postcss: ^8.4.21
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.43.1
+  recoil: ^0.7.6
+  recoil-persist: ^4.2.0
   tailwindcss: ^3.2.6
   typescript: 4.9.5
 
@@ -28,6 +33,7 @@ dependencies:
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
+  '@aspida/fetch': 1.11.0
   '@commitlint/cli': 17.4.3
   '@commitlint/config-conventional': 17.4.3
   '@next/font': 13.1.6
@@ -35,6 +41,7 @@ devDependencies:
   '@types/node': 18.13.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  aspida: 1.11.0
   autoprefixer: 10.4.13_postcss@8.4.21
   daisyui: 2.50.1_gbtt6ss3tbiz4yjtvdr6fbrj44
   eslint: 8.34.0
@@ -43,6 +50,9 @@ devDependencies:
   postcss: 8.4.21
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.43.1_react@18.2.0
+  recoil: 0.7.6_biqbaboplfbrettd7655fr4n2y
+  recoil-persist: 4.2.0_recoil@0.7.6
   tailwindcss: 3.2.6_postcss@8.4.21
   typescript: 4.9.5
 
@@ -78,6 +88,12 @@ packages:
       ajv-draft-04: 1.0.0_ajv@8.12.0
       call-me-maybe: 1.0.2
       openapi-types: 12.1.0
+    dev: true
+
+  /@aspida/fetch/1.11.0:
+    resolution: {integrity: sha512-ISi67d6YIL9thIXvbq6ac0UYAtcojILCiOEbjhCky55uyoGHV7z+ISgwzUf7X8CxTdY8iXiimcz6AMNtBfdiyw==}
+    dependencies:
+      aspida: 1.11.0
     dev: true
 
   /@babel/code-frame/7.18.6:
@@ -2086,6 +2102,10 @@ packages:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
     dev: true
 
+  /hamt_plus/1.0.2:
+    resolution: {integrity: sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==}
+    dev: true
+
   /hard-rejection/2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
     engines: {node: '>=6'}
@@ -3280,6 +3300,15 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-hook-form/7.43.1_react@18.2.0:
+    resolution: {integrity: sha512-+s3+s8LLytRMriwwuSqeLStVjRXFGxgjjx2jED7Z+wz1J/88vpxieRQGvJVvzrzVxshZ0BRuocFERb779m2kNg==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: true
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -3329,6 +3358,31 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+    dev: true
+
+  /recoil-persist/4.2.0_recoil@0.7.6:
+    resolution: {integrity: sha512-MHVfML9GxJP3RpkKR4F5rp7DtvzIvjWhowtMao/b7h2k4afMio/4sMAdUtltIrDaeVegH0Iga8Sx5XQ3oD7CzA==}
+    peerDependencies:
+      recoil: ^0.7.2
+    dependencies:
+      recoil: 0.7.6_biqbaboplfbrettd7655fr4n2y
+    dev: true
+
+  /recoil/0.7.6_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-hsBEw7jFdpBCY/tu2GweiyaqHKxVj6EqF2/SfrglbKvJHhpN57SANWvPW+gE90i3Awi+A5gssOd3u+vWlT+g7g==}
+    peerDependencies:
+      react: '>=16.13.1'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      hamt_plus: 1.0.2
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: true
 
   /redent/3.0.0:
