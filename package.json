@@ -27,6 +27,7 @@
     "daisyui": "^2.50.1",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
+    "openapi2aspida": "^0.21.0",
     "postcss": "^8.4.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
