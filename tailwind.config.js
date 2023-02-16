@@ -36,6 +36,7 @@ module.exports = {
         'Helvetica Neue',
         'sans-serif',
       ],
+      serif: ['Roboto Slab'],
     },
   },
   daisyui: {
