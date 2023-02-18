@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 body {
-  @bg-base-100;
+  @apply bg-base-100 min-h-screen;
+}
+
+input {
+  @apply !bg-inherit;
 }
