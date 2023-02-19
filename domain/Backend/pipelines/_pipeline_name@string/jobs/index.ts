@@ -6,6 +6,6 @@ export type Methods = {
     query?: Types.From & Types.To & Types.Asc | undefined
     status: 200
     /** Success */
-    resBody: Types.JobList
+    resBody: Types.JobGroupList
   }
 }

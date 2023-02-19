@@ -8,7 +8,7 @@ export type Job_id = {
 }
 
 export type Embed = {
-  embed?: ('jobs')[] | undefined
+  embed?: 'jobs'[] | undefined
 }
 
 export type From = {
@@ -31,25 +31,35 @@ export type PipelineList = Pipeline[]
 
 export type Pipeline = {
   name: string
-  status: 'synced' | 'syncing' | 'out of sync' | 'failed'
+  status: StatusPipeline
   commit_ref: string
   systemd_services?: SystemdService[] | undefined
 }
 
 export type PipelineWithEmbedJobs = {
   name: string
-  status: 'synced' | 'syncing' | 'out of sync' | 'failed'
+  status: StatusPipeline
   commit_ref: string
   systemd_services?: SystemdService[] | undefined
-  jobs?: Job[] | undefined
+  jobs?: JobGroupList | undefined
 }
+
+export type StatusPipeline = 'synced' | 'syncing' | 'out of sync' | 'failed'
 
 export type SystemdService = {
   name: string
-  status: 'running' | 'stopped' | 'failed' | 'not found'
+  status: StatusSystemdService
 }
 
-export type JobList = Job[]
+export type StatusSystemdService =
+  | 'running'
+  | 'stopped'
+  | 'failed'
+  | 'not found'
+
+export type JobGroupList = JobGroup[]
+
+export type JobGroup = Job[]
 
 export type Job = {
   group_id: string
@@ -57,13 +67,20 @@ export type Job = {
   pipeline_name: string
   commit_id: string
   type: 'test' | 'build' | 'install'
-  status: 'pending' | 'done' | 'in progress' | 'failed' | 'canceled'
+  status: StatusPipelineJob
   /** unix time */
-  timestamp: number
-  /** unix time */
+  timestamp?: number | undefined
+  /** seconds */
   duration?: number | undefined
   logs: JobLog[]
 }
+
+export type StatusPipelineJob =
+  | 'pending'
+  | 'done'
+  | 'in progress'
+  | 'failed'
+  | 'canceled'
 
 export type JobLog = {
   command: string
