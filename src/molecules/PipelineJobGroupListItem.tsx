@@ -4,11 +4,11 @@ import { StatusLabelPipelineJob } from 'src/atoms/StatusLabelPIpelineJob'
 
 export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
   const group_id = jobs[0]?.group_id ?? ''
+  const branch = jobs[0].branch
+  const tag = jobs[0].tag
   const commit_id = jobs[0]?.commit_id.substring(0, 8) ?? ''
-  // TODO: get from api
-  const commit_msg = 'commit msg...'
-  // TODO: get from api
-  const commit_author = 'tingtt'
+  const commit_msg = jobs[0].commit_message
+  const commit_author = jobs[0].commit_author
   let status = jobs[0].status
   let durationUnixTime = 0
   for (const j of jobs) {
@@ -58,7 +58,9 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
       </div>
       <div>
         <div>{commit_msg}</div>
-        <div>{commit_id}</div>
+        <div>
+          {tag ?? branch} - {commit_id}
+        </div>
         <div>{commit_author}</div>
       </div>
       <div
