@@ -1,10 +1,9 @@
 import { useLoginRequest } from 'application/Auth/isSignedIn'
 import { usePipelines } from 'application/Pipeline/usePipelines'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { PipelineList } from 'src/organisms/PipelineList'
+import { PipelineListPage } from 'src/templates/PipelineList'
 
-export default function Pipelines() {
+export default function PipelineList() {
   // Check signed in
   const router = useRouter()
   useLoginRequest(router)
@@ -19,8 +18,6 @@ export default function Pipelines() {
     )
   }
   return (
-    <>
-      <PipelineList pipelines={Array.isArray(pipelines) ? pipelines : []} />
-    </>
+    <PipelineListPage pipelines={Array.isArray(pipelines) ? pipelines : []} />
   )
 }

@@ -1,10 +1,9 @@
-import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSignIn } from '../../application/Auth/signIn'
-import { Login } from '../templates/Login'
+import { LoginPage } from '../templates/Login'
 
-const LoginPage: NextPage = () => {
+export default function Login() {
   const router = useRouter()
   var { redirect_to } = router.query
   var redirectTo = '/pipelines'
@@ -18,7 +17,7 @@ const LoginPage: NextPage = () => {
   const [disabled, setDisabled] = useState(false)
 
   return (
-    <Login
+    <LoginPage
       registerUsername={registerUsername}
       registerPassword={registerPassword}
       signIn={async () => {
@@ -38,5 +37,3 @@ const LoginPage: NextPage = () => {
     />
   )
 }
-
-export default LoginPage

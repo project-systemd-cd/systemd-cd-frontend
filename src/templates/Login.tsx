@@ -3,7 +3,7 @@ import { LoginFormCard } from '../organisms/LoginFormCard'
 import { SvgLogoMark } from 'src/atoms/SvgLogoMark'
 import { SvgLogoType } from 'src/atoms/SvgLogoType'
 
-export const Login = (props: PropsLoginForm) => {
+export const LoginPage = (props: PropsLoginForm) => {
   return (
     <div
       className={`
