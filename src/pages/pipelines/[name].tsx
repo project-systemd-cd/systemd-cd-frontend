@@ -2,6 +2,7 @@ import { useLoginRequest } from 'application/Auth/isSignedIn'
 import { usePipeline } from 'application/Pipeline/usePipeline'
 import { useRouter } from 'next/router'
 import { PipelineJobGroupList } from 'src/organisms/PipelineJobGroupList'
+import { PipelineJobGroupListHeader } from 'src/organisms/PipelineJobGroupListHeader'
 
 export default function Pipeline() {
   // Check signed in
@@ -23,9 +24,9 @@ export default function Pipeline() {
   }
   return (
     <div className='p-8 bg-base-200 min-h-screen'>
-      <div className='flex flex-wrap gap-12'>{pipeline.name}</div>
-      <div>{pipeline.commit_ref.substring(0, 8)}</div>
-      <div>{pipeline.status}</div>
+      <div className='mb-8'>
+        <PipelineJobGroupListHeader pipeline={pipeline} />
+      </div>
       {'jobs' in pipeline && (
         <PipelineJobGroupList
           jobGroups={Array.isArray(pipeline.jobs) ? pipeline.jobs : []}
