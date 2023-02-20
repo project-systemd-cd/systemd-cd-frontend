@@ -1,10 +1,11 @@
-export const SvgLogoMark = () => (
+export const SvgLogoMark = ({ className }: { className?: string }) => (
   <svg
     width='976'
     height='276'
     viewBox='0 0 976 276'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
+    className={className}
   >
     <path
       d='M109.968 0.000215173V37.9813L38.1719 37.9813V237.424H110.293V275.405H0V0L109.968 0.000215173Z'
