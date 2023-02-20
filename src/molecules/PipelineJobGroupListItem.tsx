@@ -73,11 +73,9 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
           <div
             key={j.id}
             className='tooltip'
-            data-tip={
-              j.duration
-                ? `${j.type}: ${new Date(j.duration * 1000).getSeconds()}s`
-                : j.type
-            }
+            data-tip={`${j.type}: ${new Date(
+              (j.duration ?? 0) * 1000
+            ).getSeconds()}s`}
           >
             <StatusBadgePipelineJob status={j.status} width={24} />
           </div>
