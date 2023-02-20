@@ -39,8 +39,14 @@ export default function Pipelines() {
                 <div className='text-lg font-bold whitespace-nowrap'>
                   {p.name}
                 </div>
-                <div>{p.commit_ref.substring(0, 8)}</div>
-                <div>{p.status}</div>
+                <div className='flex flex-wrap justify-between gap-x-8'>
+                  <div className='truncate'>{p.git_remote_url}</div>
+                  <div>{p.git_target_tag_regex ?? p.git_target_branch}</div>
+                </div>
+                <div className='flex justify-between'>
+                  <div>{p.status}</div>
+                  <div>{p.commit_ref.substring(0, 8)}</div>
+                </div>
               </div>
             </Link>
           )
