@@ -1,8 +1,8 @@
 import { useSetToken } from 'domain/Atom/token'
 import { useApi } from 'domain/Backend'
 import { useForm } from 'react-hook-form'
-import { LoginRequestBody } from '../../domain/Backend/@types'
-import { NEXT_PUBLIC_API_URL } from '../../domain/Env'
+import { LoginRequestBody } from 'domain/Backend/@types'
+import { NEXT_PUBLIC_API_URL } from 'domain/Env'
 
 export const useSignIn = () => {
   const { handleSubmit, register } = useForm<LoginRequestBody>()

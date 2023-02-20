@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { useTokenHydration } from '../../domain/Atom/token'
+import { useTokenHydration } from 'domain/Atom/token'
 
 export const useIsSignedIn = () => {
   const { token } = useTokenHydration()

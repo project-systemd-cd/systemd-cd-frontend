@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@aspida/fetch': ^1.11.0
+  '@aspida/swr': ^1.11.0
   '@commitlint/cli': ^17.4.3
   '@commitlint/config-conventional': ^17.4.3
   '@next/font': 13.1.6
@@ -24,6 +25,7 @@ specifiers:
   react-hook-form: ^7.43.1
   recoil: ^0.7.6
   recoil-persist: ^4.2.0
+  swr: ^2.0.3
   tailwindcss: ^3.2.6
   typescript: 4.9.5
 
@@ -34,6 +36,7 @@ dependencies:
 
 devDependencies:
   '@aspida/fetch': 1.11.0
+  '@aspida/swr': 1.11.0
   '@commitlint/cli': 17.4.3
   '@commitlint/config-conventional': 17.4.3
   '@next/font': 13.1.6
@@ -53,6 +56,7 @@ devDependencies:
   react-hook-form: 7.43.1_react@18.2.0
   recoil: 0.7.6_biqbaboplfbrettd7655fr4n2y
   recoil-persist: 4.2.0_recoil@0.7.6
+  swr: 2.0.3_react@18.2.0
   tailwindcss: 3.2.6_postcss@8.4.21
   typescript: 4.9.5
 
@@ -92,6 +96,12 @@ packages:
 
   /@aspida/fetch/1.11.0:
     resolution: {integrity: sha512-ISi67d6YIL9thIXvbq6ac0UYAtcojILCiOEbjhCky55uyoGHV7z+ISgwzUf7X8CxTdY8iXiimcz6AMNtBfdiyw==}
+    dependencies:
+      aspida: 1.11.0
+    dev: true
+
+  /@aspida/swr/1.11.0:
+    resolution: {integrity: sha512-GmR0VaUPWw9EaeMi96BSBf3Y7dGMxrPAD8z97/3ewsokpoKmK0FiX+SBt+ygGHKqqKRnCLwgQvfR0NEpTCMo8A==}
     dependencies:
       aspida: 1.11.0
     dev: true
@@ -3827,6 +3837,16 @@ packages:
       - encoding
     dev: true
 
+  /swr/2.0.3_react@18.2.0:
+    resolution: {integrity: sha512-sGvQDok/AHEWTPfhUWXEHBVEXmgGnuahyhmRQbjl9XBYxT/MSlAzvXEKQpyM++bMPaI52vcWS2HiKNaW7+9OFw==}
+    engines: {pnpm: '7'}
+    peerDependencies:
+      react: ^16.11.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: true
+
   /synckit/0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -4046,6 +4066,14 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.3.0
+    dev: true
+
+  /use-sync-external-store/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: true
 
   /util-deprecate/1.0.2:

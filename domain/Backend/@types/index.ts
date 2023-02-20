@@ -30,44 +30,62 @@ export type TokenBody = {
 export type PipelineList = Pipeline[]
 
 export type Pipeline = {
-  name?: string | undefined
-  status?: 'synced' | 'syncing' | 'out of sync' | 'failed' | undefined
-  commit_ref?: string | undefined
+  name: string
+  git_remote_url: string
+  git_target_branch: string
+  git_target_tag_regex?: string | undefined
+  status: StatusPipeline
+  commit_ref: string
   systemd_services?: SystemdService[] | undefined
 }
 
 export type PipelineWithEmbedJobs = {
-  name?: string | undefined
-  status?: 'synced' | 'syncing' | 'out of sync' | 'failed' | undefined
-  commit_ref?: string | undefined
+  name: string
+  git_remote_url: string
+  git_target_branch: string
+  git_target_tag_regex?: string | undefined
+  status: StatusPipeline
+  commit_ref: string
   systemd_services?: SystemdService[] | undefined
-  jobs?: Job[] | undefined
+  jobs?: JobGroupList | undefined
 }
+
+export type StatusPipeline = 'synced' | 'syncing' | 'out of sync' | 'failed'
 
 export type SystemdService = {
-  name?: string | undefined
-  status?: 'running' | 'stopped' | 'failed' | 'not found' | undefined
+  name: string
+  status: StatusSystemdService
 }
 
-export type JobList = Job[]
+export type StatusSystemdService = 'running' | 'stopped' | 'failed' | 'not found'
+
+export type JobGroupList = JobGroup[]
+
+export type JobGroup = Job[]
 
 export type Job = {
-  group_id?: string | undefined
-  id?: string | undefined
-  pipeline_name?: string | undefined
-  commit_id?: string | undefined
-  type?: 'test' | 'build' | 'install' | undefined
-  status?: 'pending' | 'done' | 'in progress' | 'failed' | 'canceled' | undefined
+  group_id: string
+  id: string
+  pipeline_name: string
+  branch: string
+  tag?: string | undefined
+  commit_id: string
+  commit_author: string
+  commit_message: string
+  type: 'test' | 'build' | 'install'
+  status: StatusPipelineJob
   /** unix time */
   timestamp?: number | undefined
-  /** unix time */
+  /** seconds */
   duration?: number | undefined
-  logs?: JobLog[] | undefined
+  logs: JobLog[]
 }
 
+export type StatusPipelineJob = 'pending' | 'done' | 'in progress' | 'failed' | 'canceled'
+
 export type JobLog = {
-  command?: string | undefined
-  output?: string | undefined
+  command: string
+  output: string
 }
 
 export type LoginRequestBody = {
