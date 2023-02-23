@@ -1,4 +1,6 @@
 import { JobGroup } from 'domain/Backend/@types'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { StatusBadgePipelineJob } from 'src/atoms/StatusBadgePipelineJob'
 import { StatusLabelPipelineJob } from 'src/atoms/StatusLabelPIpelineJob'
 import { SvgCalendar } from 'src/atoms/SvgCalendar'
@@ -46,14 +48,21 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
     ].join(':')
   })()
 
+  const router = useRouter()
+  const { name } = router.query
+
   return (
-    <div
+    <Link
       key={group_id}
       className={`
         grid gap-8 sm:grid-cols-2 md:grid-cols-[20%,30%,1fr]
         p-4 border border-slate-200 dark:border-slate-700
         rounded-lg bg-base-100 shadow-md
       `}
+      href={{
+        pathname: '/pipelines/[name]/jobs/[group_id]',
+        query: { name: name, group_id: group_id },
+      }}
     >
       <div>
         <div className='flex gap-2 items-center mb-4'>
@@ -112,7 +121,7 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
           </div>
         ))}
       </div>
-    </div>
+    </Link>
   )
 }
 

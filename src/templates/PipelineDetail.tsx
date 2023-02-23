@@ -1,7 +1,7 @@
 import { Pipeline, PipelineWithEmbedJobs } from 'domain/Backend/@types'
 import { SystemdServiceStatus } from 'src/molecules/SystemdServiceStatus'
 import { PipelineJobGroupList } from 'src/organisms/PipelineJobGroupList'
-import { PipelineJobGroupListHeader } from 'src/organisms/PipelineJobGroupListHeader'
+import { HeaderPipeline } from 'src/organisms/HeaderPipeline'
 
 export const PipelineDetailPage = ({
   pipeline,
@@ -10,7 +10,7 @@ export const PipelineDetailPage = ({
 }) => (
   <div className='p-8 bg-base-200 min-h-screen'>
     <div className='mb-8'>
-      <PipelineJobGroupListHeader pipeline={pipeline} />
+      <HeaderPipeline pipeline={pipeline} />
     </div>
     <div className='ml-4 flex flex-wrap gap-8'>
       {(pipeline.systemd_services ?? []).map((s) => (
