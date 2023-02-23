@@ -3,6 +3,10 @@ import { StatusBadgePipelineJob } from 'src/atoms/StatusBadgePipelineJob'
 import { StatusLabelPipelineJob } from 'src/atoms/StatusLabelPIpelineJob'
 import { SvgCalendar } from 'src/atoms/SvgCalendar'
 import { SvgTimer } from 'src/atoms/SvgTimer'
+import { GitBranch } from './GitBranch'
+import { GitCommit } from './GitCommit'
+import { GitTag } from './GitTag'
+import { Person } from './Person'
 
 export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
   const group_id = jobs[0]?.group_id ?? ''
@@ -69,12 +73,22 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
           <div>{durationStr}</div>
         </div>
       </div>
-      <div>
-        <div>{commit_msg}</div>
+      <div className='flex flex-col gap-1'>
+        <div className='truncate'>{commit_msg}</div>
         <div>
-          {tag ?? branch} - {commit_id}
+          {tag != undefined ? (
+            <div className='flex items-center gap-4'>
+              <GitTag tag={tag} />
+              <GitCommit commit={commit_id} />
+            </div>
+          ) : (
+            <div className='flex items-center gap-4'>
+              <GitBranch branch={branch} />
+              <GitCommit commit={commit_id} />
+            </div>
+          )}
         </div>
-        <div>{commit_author}</div>
+        <Person person={commit_author} />
       </div>
       <div
         className={`

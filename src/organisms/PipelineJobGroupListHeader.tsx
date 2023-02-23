@@ -1,25 +1,42 @@
-import { Pipeline } from 'domain/Backend/@types'
+import { Pipeline, PipelineWithEmbedJobs } from 'domain/Backend/@types'
+import Link from 'next/link'
 import { StatusBadgePipeline } from 'src/atoms/StatusBadgePipeline'
 import { StatusLabelPipeline } from 'src/atoms/StatusLabelPIpeline'
+import { GitBranch } from 'src/molecules/GitBranch'
+import { GitCommit } from 'src/molecules/GitCommit'
+import { GitTag } from 'src/molecules/GitTag'
 
 export const PipelineJobGroupListHeader = ({
   pipeline,
 }: {
-  pipeline: Pipeline
+  pipeline: Pipeline | PipelineWithEmbedJobs
 }) => {
+  const tag =
+    'jobs' in pipeline &&
+    Array.isArray(pipeline.jobs) &&
+    pipeline.jobs.length != 0 &&
+    pipeline.jobs[0].length != 0
+      ? pipeline.jobs[0][0].tag
+      : undefined
   return (
     <div className='flex items-center'>
-      <div className='text-2xl'>{pipeline.name}</div>
+      <div className='text-2xl whitespace-nowrap'>{pipeline.name}</div>
       <div className='divider divider-horizontal' />
       <div className='flex gap-2 items-center truncate'>
         <div className='min-w-[24px]'>
           <StatusBadgePipeline status={pipeline.status} />
         </div>
         <StatusLabelPipeline status={pipeline.status} />
-        <div className='truncate'>to {pipeline.commit_ref.substring(0, 8)}</div>
+        to
+        {tag != undefined ? (
+          <GitTag tag={tag} />
+        ) : (
+          <GitBranch branch={pipeline.git_target_branch} />
+        )}
+        <GitCommit commit={pipeline.commit_ref.substring(0, 8)} />
       </div>
       <Link
-        className='ml-auto link link-hover'
+        className='ml-auto link link-hover hidden lg:block'
         href={pipeline.git_remote_url}
         target='_blank'
       >
