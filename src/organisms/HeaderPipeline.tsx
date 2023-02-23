@@ -1,16 +1,18 @@
 import { Pipeline, PipelineWithEmbedJobs } from 'domain/Backend/@types'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { StatusBadgePipeline } from 'src/atoms/StatusBadgePipeline'
 import { StatusLabelPipeline } from 'src/atoms/StatusLabelPIpeline'
 import { GitBranch } from 'src/molecules/GitBranch'
 import { GitCommit } from 'src/molecules/GitCommit'
 import { GitTag } from 'src/molecules/GitTag'
 
-export const PipelineJobGroupListHeader = ({
+export const HeaderPipeline = ({
   pipeline,
 }: {
   pipeline: Pipeline | PipelineWithEmbedJobs
 }) => {
+  const router = useRouter()
   const tag =
     'jobs' in pipeline &&
     Array.isArray(pipeline.jobs) &&
@@ -20,7 +22,19 @@ export const PipelineJobGroupListHeader = ({
       : undefined
   return (
     <div className='flex items-center'>
-      <div className='text-2xl whitespace-nowrap'>{pipeline.name}</div>
+      {router.pathname != '/pipelines/[name]' ? (
+        <Link
+          className='text-2xl whitespace-nowrap'
+          href={{
+            pathname: '/pipelines/[name]',
+            query: { name: pipeline.name },
+          }}
+        >
+          {pipeline.name}
+        </Link>
+      ) : (
+        <div className='text-2xl whitespace-nowrap'>{pipeline.name}</div>
+      )}
       <div className='divider divider-horizontal' />
       <div className='flex gap-2 items-center truncate'>
         <div className='min-w-[24px]'>
