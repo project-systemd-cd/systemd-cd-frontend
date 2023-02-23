@@ -1,6 +1,8 @@
 import { JobGroup } from 'domain/Backend/@types'
 import { StatusBadgePipelineJob } from 'src/atoms/StatusBadgePipelineJob'
 import { StatusLabelPipelineJob } from 'src/atoms/StatusLabelPIpelineJob'
+import { SvgCalendar } from 'src/atoms/SvgCalendar'
+import { SvgTimer } from 'src/atoms/SvgTimer'
 
 export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
   const group_id = jobs[0]?.group_id ?? ''
@@ -23,9 +25,12 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
     }
   }
   const timestampStr = (() => {
-    const timestamp = new Date((jobs[jobs.length - 1]?.timestamp ?? 0) * 1000)
+    const t = jobs[jobs.length - 1]?.timestamp
+    if (t == undefined) {
+      return undefined
+    }
     return ElapsedSecondsToStr(
-      Math.floor((new Date().getTime() - timestamp.getTime()) / 1000)
+      Math.floor((new Date().getTime() - new Date(t * 1000).getTime()) / 1000)
     )
   })()
   const durationStr = (() => {
@@ -47,14 +52,22 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
       `}
     >
       <div>
-        <div className='flex gap-2 items-center'>
+        <div className='flex gap-2 items-center mb-4'>
           <div className='min-w-[18px]'>
             <StatusBadgePipelineJob status={status} width={18} />
           </div>
           <StatusLabelPipelineJob status={status} />
         </div>
-        <div>{timestampStr}</div>
-        <div>{durationStr}</div>
+        {timestampStr && (
+          <div className='flex gap-2 items-center'>
+            <SvgCalendar />
+            <div>{timestampStr}</div>
+          </div>
+        )}
+        <div className='flex gap-2 items-center'>
+          <SvgTimer />
+          <div>{durationStr}</div>
+        </div>
       </div>
       <div>
         <div>{commit_msg}</div>
@@ -72,10 +85,14 @@ export const PipelineJobGroupListItem = ({ jobs }: { jobs: JobGroup }) => {
         {(jobs ?? []).map((j) => (
           <div
             key={j.id}
-            className='tooltip'
-            data-tip={`${j.type}: ${new Date(
-              (j.duration ?? 0) * 1000
-            ).getSeconds()}s`}
+            className={j.status == 'done' ? 'tooltip' : ''}
+            data-tip={
+              j.status == 'done'
+                ? `${j.type}: ${new Date(
+                    (j.duration ?? 0) * 1000
+                  ).getSeconds()}s`
+                : ''
+            }
           >
             <StatusBadgePipelineJob status={j.status} width={24} />
           </div>

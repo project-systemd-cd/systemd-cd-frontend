@@ -12,7 +12,7 @@ export const PipelineListItem = ({ pipeline }: { pipeline: Pipeline }) => {
       `}
     >
       <div className='text-lg font-bold whitespace-nowrap'>{pipeline.name}</div>
-      <div className='flex flex-wrap justify-between gap-x-8'>
+      <div className='flex justify-between gap-x-8'>
         <div className='truncate'>{pipeline.git_remote_url}</div>
         <div>{pipeline.git_target_tag_regex ?? pipeline.git_target_branch}</div>
       </div>
