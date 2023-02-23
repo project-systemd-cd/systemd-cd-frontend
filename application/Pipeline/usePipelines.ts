@@ -14,7 +14,7 @@ export const usePipelines = () => {
       isLoading: true as true,
     }
   }
-  if (data?.status != 200) {
+  if (data?.status != 200 && data?.status != 204) {
     return {
       isLoading: isLoading,
       failed: true as true,
