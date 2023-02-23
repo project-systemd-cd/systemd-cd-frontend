@@ -18,6 +18,13 @@ export const PipelineJobGroupListHeader = ({
         <StatusLabelPipeline status={pipeline.status} />
         <div className='truncate'>to {pipeline.commit_ref.substring(0, 8)}</div>
       </div>
+      <Link
+        className='ml-auto link link-hover'
+        href={pipeline.git_remote_url}
+        target='_blank'
+      >
+        {pipeline.git_remote_url}
+      </Link>
     </div>
   )
 }
