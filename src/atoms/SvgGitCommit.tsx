@@ -8,8 +8,8 @@ export const SvgGitCommit = ({
   className?: string
 }) => (
   <svg
-    width={width ?? '16'}
-    height={height ?? '16'}
+    width={width ?? '18'}
+    height={height ?? '18'}
     viewBox='0 0 80 80'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
