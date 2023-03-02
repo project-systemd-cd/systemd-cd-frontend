@@ -3,8 +3,14 @@ import { StatusBadgePipelineJob } from 'src/atoms/StatusBadgePipelineJob'
 
 export const PipelineJobCollapse = ({ job }: { job: Job }) => {
   return (
-    <div className='collapse collapse-arrow border-2 dark:border rounded-lg'>
-      <input type='checkbox' />
+    <div
+      className={`
+        collapse ${job.status == 'done' ? 'collapse-arrow' : 'collapse-close'}
+        border border-slate-200 dark:border-slate-700
+        rounded-lg bg-base-100
+      `}
+    >
+      <input type='checkbox' disabled={job.status != 'done'} />
       <div
         className={`
           collapse-title
@@ -19,10 +25,19 @@ export const PipelineJobCollapse = ({ job }: { job: Job }) => {
         <div>{job.duration ?? 0}s</div>
       </div>
       <div className='collapse-content ml-6 flex flex-col gap-8'>
-        {job.logs.map((log) => {
+        {(Array.isArray(job.logs) ? job.logs : []).map((log, i, ary) => {
           return (
             <div key={`${job.id}.${log.command}`}>
-              <div className='bg-neutral text-neutral-content p-4 rounded-lg'>
+              <div
+                className={`
+                  bg-neutral text-neutral-content p-4 rounded-lg
+                  ${
+                    job.status == 'failed' && i == ary.length - 1
+                      ? 'bg-red-500 text-slate-50'
+                      : ''
+                  }
+                `}
+              >
                 {('$ ' + log.command)
                   .split('\n')
                   .filter((s) => s != '')
@@ -36,7 +51,16 @@ export const PipelineJobCollapse = ({ job }: { job: Job }) => {
                   ))}
               </div>
               {log.output != '' && (
-                <div className='bg-neutral text-neutral-content p-4 rounded-lg mt-4 ml-4'>
+                <div
+                  className={`
+                    bg-neutral text-neutral-content p-4 rounded-lg mt-4 ml-4
+                    ${
+                      job.status == 'failed' && i == ary.length - 1
+                        ? 'bg-red-500 text-slate-50'
+                        : ''
+                    }
+                  `}
+                >
                   {log.output
                     .split('\n')
                     .filter((s) => s != '')
