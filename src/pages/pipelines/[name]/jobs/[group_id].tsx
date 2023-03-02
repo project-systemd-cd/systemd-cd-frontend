@@ -1,6 +1,7 @@
 import { useLoginRequest } from 'application/Auth/isSignedIn'
 import { usePipeline } from 'application/Pipeline/usePipeline'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { PipelineJobGroupPage } from 'src/templates/PipelineJobGroup'
 
 export default function JobGroup() {
@@ -14,6 +15,7 @@ export default function JobGroup() {
     Array.isArray(name) ? name.join() : name
   )
 
+  useEffect(() => {}, [pipeline])
   const jobGroup =
     !isLoading && !failed && 'jobs' in pipeline && Array.isArray(pipeline.jobs)
       ? pipeline.jobs.find(
