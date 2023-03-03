@@ -40,7 +40,9 @@ export const HeaderPipeline = ({
         <div className='min-w-[24px]'>
           <StatusBadgePipeline status={pipeline.status} />
         </div>
-        <StatusLabelPipeline status={pipeline.status} />
+        <div className='mr-2'>
+          <StatusLabelPipeline status={pipeline.status} />
+        </div>
         to
         {tag != undefined ? (
           <GitTag tag={tag} />
